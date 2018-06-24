@@ -1,0 +1,44 @@
+// animation react-addons-css-transition-group
+@mixin transitionAnimate($target, $dur, $effect) {
+	-webkit-transition: $target $dur $effect;
+	-moz-transition: 	$target $dur $effect;
+	-ms-transition: 	$target $dur $effect;
+	-o-transition: 		$target $dur $effect;
+	transition: 		$target $dur $effect;
+}
+
+@mixin rotateDeg($xDeg, $yDeg) {
+    -webkit-transform: rotateX($xDeg) rotateZ($yDeg);
+    -moz-transform:    rotateX($xDeg) rotateZ($yDeg);
+    -ms-transform: 	   rotateX($xDeg) rotateZ($yDeg);
+    -o-transform: 	   rotateX($xDeg) rotateZ($yDeg);
+    transform: 		   rotateX($xDeg) rotateZ($yDeg);
+}
+
+/* fade-in init */
+
+.fade-enter {
+    opacity: 0;
+    @include rotateDeg(90deg, 90deg);
+}
+
+
+/* fade-in actived */
+.fade-enter.fade-enter-active {
+	opacity: 1;
+	@include rotateDeg(0deg, 0deg);
+	@include transitionAnimate(all, 1s, ease-in);
+}
+
+/* fade-out init */
+.fade-leave {
+    opacity: 1;
+	@include rotateDeg(0deg, 0deg);
+}
+
+/* fade-out activated */
+.fade-leave.fade-leave-active {
+	opacity: 0;
+    @include rotateDeg(90deg, 90deg);
+    @include transitionAnimate(all, 1s, ease-out);
+}
